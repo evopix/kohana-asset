@@ -150,6 +150,13 @@ class Asset
 	protected $cache_bust;
 	
 	/**
+	 * Optionally specify the media attribute for the stylesheet <link> tag (not applicable to javascripts)
+	 * 
+	 * @var string
+	 */
+	protected $media;
+	
+	/**
 	 * Constructor 
 	 * 
 	 * @author Jonathan Geiger
@@ -227,11 +234,16 @@ class Asset
 				switch($this->type)
 				{
 					case Asset::JAVASCRIPT:
-						$this->html .= html::script($file['remote'])."\n";
+						$this->html .= Html::script($file['remote'])."\n";
 						break;
 						
 					case Asset::STYLESHEET:
-						$this->html .= html::style($file['remote'])."\n";
+						$attribs = array();
+						if( $this->media && $this->media != 'screen' )
+							// append the media attribute if it is specified and isn't default
+							$attribs['media'] = $this->media;
+
+						$this->html .= Html::style($file['remote'], $attribs)."\n";
 						break;
 				}
 			}

@@ -35,6 +35,7 @@ return array(
 		'compressor' => 'yui',
 		'compressor_options' => NULL,
 		'cache_bust' => TRUE,
+		'media' => 'screen',
 	),
 	
 	/**
