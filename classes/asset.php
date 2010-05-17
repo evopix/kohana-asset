@@ -143,7 +143,7 @@ class Asset
 	protected $compressor_options;
 	
 	/**
-	 * Whether or not to append a cache buster
+	 * Whether or not to append a cache buster.
 	 * 
 	 * @var mixed
 	 */
@@ -333,7 +333,16 @@ class Asset
 			// Append a cachebuster
 			if ($this->cache_bust)
 			{
-				$info['remote'] .= '?'.$info['mtime'];
+				if( $this->cache_bust == 'filename' )
+				{
+					// insert the timestamp before the file extension
+					$info['remote'] = substr_replace($info['remote'], '.' . $info['mtime'], strrpos($info['remote'], '.'), 0 );
+				}
+				else
+				{
+					// append the timestamp as a querystring parameter
+					$info['remote'] .= '?'.$info['mtime'];
+				}
 			}
 			
 			// The host is empty if there aren't any 
