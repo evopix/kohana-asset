@@ -1,6 +1,7 @@
 # Kohana 3 Asset Helper
 
 Adds two new capabilities to Jonathan Geiger's original assets helper, namely:
+
 * `media` config option to specify the corresponding attribute for the `<link>` tag for stylesheets
 * `cache_bust = 'filename'` option to include the cache-busting timestamp within the filename instead of appended as a querystring parameter
 
@@ -31,7 +32,7 @@ Outputs:
 	<link type="text/css" href="stylesheets/cache/print-min.css" rel="stylesheet" media="print" />
 
 
-# `cache_bust = 'filename'` support
+# Filename rewrite ssupport
 
 Including `'cache_bust' => 'filename',` in your config will result in:
 
