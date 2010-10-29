@@ -282,7 +282,7 @@ class Asset
 	protected function file_info($path, $prefix = TRUE, $mtime = NULL)
 	{			
 		// Ensure we have a file extension
-		if ($this->extension !== substr($path, -strlen($this->extension)))
+		if ($this->extension !== substr($path, -strlen($this->extension)) AND (strpos($path, '://') === FALSE))
 		{
 			$path = $path.$this->extension;
 		}
